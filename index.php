@@ -28,7 +28,6 @@ $name = $geo_data[1];
 $service_url = "https://web.archive.org/web/19901027080830if_/http://www.".$geo_data[0]."#";
 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

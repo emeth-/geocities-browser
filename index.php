@@ -37,8 +37,8 @@ $service_url = "https://web.archive.org/web/19901027080830if_/http://www.".$geo_
     <style>
 .floating-random-button {
     position:fixed;
-    bottom:50px;
-    right:50px;
+    bottom:10px;
+    right:10px;
     cursor:pointer;
     z-index:999999;
 }
@@ -131,13 +131,15 @@ $service_url = "https://web.archive.org/web/19901027080830if_/http://www.".$geo_
 <body>
 <div class="floating-random-button">
     <!-- Thanks to https://www.joshwcomeau.com/animation/3d-button/ for the awesome button -->
-    <button class="pushable" onclick="window.location.href='?'">
-    <span class="shadow"></span>
-    <span class="edge"></span>
-    <span class="front">
-        Random
-    </span>
-    </button>
+    <form action="?seed=<?=sha1(guid())?>'">
+        <button type="submit" class="pushable">
+        <span class="shadow"></span>
+        <span class="edge"></span>
+        <span class="front">
+            Random Geocities Website
+        </span>
+        </button>
+    </form>
 </div>
 <iframe
   id='geo_iframe'

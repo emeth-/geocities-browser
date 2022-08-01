@@ -1,11 +1,11 @@
-View live at: [http://randomgeo.city](http://randomgeo.city).
+View live at: [https://randomgeo.city](https://randomgeo.city).
 
 A year or so ago I created this geocities_clean.csv file.
 
 Here is what I remember from how I generated it:
 
 - Start with archive.org's [ALL-GEO-SEEDS-20090730.txt](https://archive.org/download/webcrawl-geocities-seedlist), which contained (iirc) around 42 million rows of URLS
-- Attempt to reduce the list to just a single root URL per geocities user (e.g. if there was example.com/bob/ and example.com/bob/pic.jpg, we keep the shortest url only - example.com/bob/), result was ~2 million rows
+- Attempt to reduce the list to just a single root URL per geocities user (e.g. if there was example.com/bob/ and example.com/bob/pic.jpg, we keep the shortest url only - example.com/bob/), I believe the result was around ~2 million rows
 - Run a spider to gather all page titles from remaining URLs.
 - Delete all URLs that have page titles SOLELY made up of non-ascii characters (this mostly got rid of Chinese sites), as my audience was English
 - Delete all URLs that have page titles with genitals/cam girl in the name.

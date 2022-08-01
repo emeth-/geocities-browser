@@ -1,15 +1,18 @@
 <?php
 
-function guid() {
-    if (function_exists('com_create_guid') === true) {
-        return trim(com_create_guid(), '{}');
-    }
-
-    return sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));
+// https://stackoverflow.com/a/4356295
+function generateRandomString($length = 10) {
+  $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  $charactersLength = strlen($characters);
+  $randomString = '';
+  for ($i = 0; $i < $length; $i++) {
+      $randomString .= $characters[rand(0, $charactersLength - 1)];
+  }
+  return $randomString;
 }
 
 if(!$_GET['seed']) {
-    header('Location: ?seed='.sha1(guid()));
+    header('Location: ?seed='.generateRandomString(6));
 }
 
 $geo_seed_hash = sha1($_GET['seed']);
@@ -34,6 +37,19 @@ $service_url = "https://web.archive.org/web/19901027080830if_/http://www.".$geo_
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?=htmlentities($name, ENT_QUOTES)?></title>
+<script>
+// https://stackoverflow.com/a/1349426
+function generateRandomString(length) {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * 
+ charactersLength));
+   }
+   return result;
+}
+</script>
     <style>
 .floating-random-button {
     position:fixed;
@@ -131,15 +147,13 @@ $service_url = "https://web.archive.org/web/19901027080830if_/http://www.".$geo_
 <body>
 <div class="floating-random-button">
     <!-- Thanks to https://www.joshwcomeau.com/animation/3d-button/ for the awesome button -->
-    <form action="?seed=<?=sha1(guid())?>'">
-        <button type="submit" class="pushable">
-        <span class="shadow"></span>
-        <span class="edge"></span>
-        <span class="front">
-            Random Geocities Website
-        </span>
-        </button>
-    </form>
+    <button type="submit" class="pushable" onclick="window.location.href='?seed='+generateRandomString(6)">
+    <span class="shadow"></span>
+    <span class="edge"></span>
+    <span class="front">
+        Random Geocities Website
+    </span>
+    </button>
 </div>
 <iframe
   id='geo_iframe'
